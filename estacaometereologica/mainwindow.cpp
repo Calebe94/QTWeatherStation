@@ -1,14 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QSerialPort>
+#include <QRunnable>
+
 using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-    connect(ui->BuscarButton, SIGNAL(clicked()), this, SLOT(BuscarDados()));
-    connect(ui->LimparButton, SIGNAL(clicked()), this, SLOT(LimparDados()));
-}
+    {
+        ui->setupUi(this);
+        connect(ui->BuscarButton, SIGNAL(clicked()), this, SLOT(BuscarDados()));
+        connect(ui->LimparButton, SIGNAL(clicked()), this, SLOT(LimparDados()));
+        connect(ui->buttonConnect, SIGNAL(clicked()), this, SLOT(ConnectSerial()));
+        connect(&this->serial, SIGNAL(ReadSerialData()), this, SLOT(ReadSerialData));
+    }
 
 MainWindow::~MainWindow()
 {
@@ -38,6 +43,65 @@ UpdateMax(Query_Max);
 UpdateMin(Query_Min);
 UpdateMostRecent(Query_FilterRecent);
 }
+
+void MainWindow::ReadSerialData()
+{
+    if (serial.isOpen() && serial.isWritable())
+    {
+
+        QByteArray output;
+
+        output = "t";
+        this->serial.write(output);
+        this->serial.flush();
+        this->serial.waitForBytesWritten(100);
+        this->serial.waitForReadyRead(500);
+        this->temperature = this->serial.readAll();
+
+        output = "h";
+        this->serial.write(output);
+        this->serial.flush();
+        this->serial.waitForBytesWritten(100);
+        this->serial.waitForReadyRead(500);
+        this->humidity = this->serial.readAll();
+
+        cout << "Temperature:"+this->temperature.toStdString() << endl;
+        cout << "Humidity:"+this->humidity.toStdString() << endl;
+     }
+}
+void MainWindow::ConnectSerial(){
+    /*
+     * Referencia para Serial:
+     * https://stackoverflow.com/questions/26459788/qt-serial-port-write-and-read-data
+     * https://pt.stackoverflow.com/questions/9947/como-funciona-a-comunicação-serial-e-como-fazer-utilizando-c-c
+    */
+
+    QString baudrateString = ui->comboBoxBaudrates->currentText();
+    QString portString = ui->comboBoxPorts->currentText();
+    if(baudrateString.toStdString() != "Baudrate" && portString.toStdString() != "Porta")
+    {
+        cout << baudrateString.toStdString() << endl;
+        cout << portString.toStdString() << endl;
+        cout << "Conecta Serial!"<< endl;
+        this->serial.setPortName(portString);
+        this->serial.open(QIODevice::ReadWrite);
+        this->serial.setBaudRate(baudrateString.toInt());
+        this->serial.setDataBits(QSerialPort::Data8);
+        this->serial.setParity(QSerialPort::NoParity);
+        this->serial.setStopBits(QSerialPort::OneStop);
+        this->serial.setFlowControl(QSerialPort::HardwareControl);
+
+        while(true)
+        {
+            ReadSerialData();
+        }
+    }
+    else
+    {
+        cout << "Nao Conecta na Serial!"<< endl;
+    }
+}
+
 void MainWindow::LimparDados(){
     QDate date = QDate::currentDate();
     QString dateString = date.toString();
