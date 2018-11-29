@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <stdlib.h>
 #include <iostream>
+#include <QThread>
 
 //#include <mysql-cppconn/jdbc/mysql_driver.h>
 //#include <mysql-cppconn/jdbc/mysql_error.h>
@@ -17,8 +18,9 @@
 #include <cppconn/exception.h>
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
-#include <QSerialPort>
 
+#include <QSerialPort>
+#include <QTimer>
 namespace Ui {
 class MainWindow;
 }
@@ -34,8 +36,9 @@ public:
     void UpdateMin(QString Query);
     void UpdateMax(QString Query);
     void UpdateMostRecent(QString Query);
-    void ReadSerialData();
+    void InsertOnDatabase();
 private:
+    QTimer *timer;
     Ui::MainWindow *ui;
     QSerialPort serial;
     int HOUR;
@@ -43,12 +46,18 @@ private:
     int HOUR_FINAL;
     int MINUTE_FINAL;
     int YEAR, MONTH, DAY;
+    char password[30] = "";
     QByteArray temperature;
     QByteArray humidity;
 private slots:
+    void ReadSerialData();
     void BuscarDados();
     void LimparDados();
     void ConnectSerial();
+    void UpdateWindow();
+
+protected:
+     void closeEvent(QCloseEvent *event);
 };
 
 #endif // MAINWINDOW_H

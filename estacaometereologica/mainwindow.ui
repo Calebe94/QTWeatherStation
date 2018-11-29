@@ -32,6 +32,9 @@
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
       <widget class="QCalendarWidget" name="calendarWidget">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="gridVisible">
         <bool>true</bool>
        </property>
@@ -51,6 +54,9 @@
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="1" column="0">
       <widget class="QTimeEdit" name="HoraFinal">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="locale">
         <locale language="Portuguese" country="Brazil"/>
        </property>
@@ -97,6 +103,9 @@
      </item>
      <item row="2" column="0">
       <widget class="QPushButton" name="BuscarButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Buscar</string>
        </property>
@@ -104,6 +113,9 @@
      </item>
      <item row="3" column="0">
       <widget class="QPushButton" name="LimparButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Limpar</string>
        </property>
@@ -111,6 +123,9 @@
      </item>
      <item row="0" column="0">
       <widget class="QTimeEdit" name="HoraInicial">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="locale">
         <locale language="Portuguese" country="Brazil"/>
        </property>
@@ -184,28 +199,28 @@
      <item>
       <widget class="QLabel" name="maiorumidade">
        <property name="text">
-        <string>80%</string>
+        <string>0%</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="menorumidade">
        <property name="text">
-        <string>75%</string>
+        <string>0%</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="mediaumidade">
        <property name="text">
-        <string>67,5%</string>
+        <string>0%</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="ultimaumidade">
        <property name="text">
-        <string>79%</string>
+        <string>0%</string>
        </property>
       </widget>
      </item>
@@ -286,28 +301,28 @@
      <item>
       <widget class="QLabel" name="maiortemperatura">
        <property name="text">
-        <string>24ºC</string>
+        <string>0ºC</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="menortemperatura">
        <property name="text">
-        <string>24ºC</string>
+        <string>0ºC</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="mediatemperatura">
        <property name="text">
-        <string>24ºC</string>
+        <string>0ºC</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="ultimatemperatura">
        <property name="text">
-        <string>24ºC</string>
+        <string>0ºC</string>
        </property>
       </widget>
      </item>
@@ -380,6 +395,16 @@
     <item>
      <property name="text">
       <string>/dev/ttyACM1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>/dev/ttyACM2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>/dev/ttyACM3</string>
      </property>
     </item>
     <item>

@@ -99,6 +99,7 @@ public:
         gridLayout->setContentsMargins(0, 0, 0, 0);
         calendarWidget = new QCalendarWidget(gridLayoutWidget);
         calendarWidget->setObjectName(QString::fromUtf8("calendarWidget"));
+        calendarWidget->setEnabled(false);
         calendarWidget->setGridVisible(true);
 
         gridLayout->addWidget(calendarWidget, 0, 0, 1, 1);
@@ -113,6 +114,7 @@ public:
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
         HoraFinal = new QTimeEdit(gridLayoutWidget_2);
         HoraFinal->setObjectName(QString::fromUtf8("HoraFinal"));
+        HoraFinal->setEnabled(false);
         HoraFinal->setLocale(QLocale(QLocale::Portuguese, QLocale::Brazil));
         HoraFinal->setMaximumDateTime(QDateTime(QDate(2000, 1, 1), QTime(23, 59, 59)));
         HoraFinal->setMinimumDateTime(QDateTime(QDate(2000, 1, 1), QTime(0, 0, 0)));
@@ -126,16 +128,19 @@ public:
 
         BuscarButton = new QPushButton(gridLayoutWidget_2);
         BuscarButton->setObjectName(QString::fromUtf8("BuscarButton"));
+        BuscarButton->setEnabled(false);
 
         gridLayout_2->addWidget(BuscarButton, 2, 0, 1, 1);
 
         LimparButton = new QPushButton(gridLayoutWidget_2);
         LimparButton->setObjectName(QString::fromUtf8("LimparButton"));
+        LimparButton->setEnabled(false);
 
         gridLayout_2->addWidget(LimparButton, 3, 0, 1, 1);
 
         HoraInicial = new QTimeEdit(gridLayoutWidget_2);
         HoraInicial->setObjectName(QString::fromUtf8("HoraInicial"));
+        HoraInicial->setEnabled(false);
         HoraInicial->setLocale(QLocale(QLocale::Portuguese, QLocale::Brazil));
         HoraInicial->setMaximumTime(QTime(12, 59, 59));
         HoraInicial->setDisplayFormat(QString::fromUtf8("hh:mm"));
@@ -295,6 +300,8 @@ public:
         comboBoxPorts->addItem(QString());
         comboBoxPorts->addItem(QString());
         comboBoxPorts->addItem(QString());
+        comboBoxPorts->addItem(QString());
+        comboBoxPorts->addItem(QString());
         comboBoxPorts->setObjectName(QString::fromUtf8("comboBoxPorts"));
         comboBoxPorts->setGeometry(QRect(360, 10, 131, 26));
         comboBoxBaudrates = new QComboBox(centralWidget);
@@ -350,26 +357,28 @@ public:
         labelMenorUmidade->setText(QApplication::translate("MainWindow", "Menor:", nullptr));
         labelMediaUmidade->setText(QApplication::translate("MainWindow", "M\303\251dia:", nullptr));
         labelUltimoUmidade->setText(QApplication::translate("MainWindow", "\303\232ltimo:", nullptr));
-        maiorumidade->setText(QApplication::translate("MainWindow", "80%", nullptr));
-        menorumidade->setText(QApplication::translate("MainWindow", "75%", nullptr));
-        mediaumidade->setText(QApplication::translate("MainWindow", "67,5%", nullptr));
-        ultimaumidade->setText(QApplication::translate("MainWindow", "79%", nullptr));
+        maiorumidade->setText(QApplication::translate("MainWindow", "0%", nullptr));
+        menorumidade->setText(QApplication::translate("MainWindow", "0%", nullptr));
+        mediaumidade->setText(QApplication::translate("MainWindow", "0%", nullptr));
+        ultimaumidade->setText(QApplication::translate("MainWindow", "0%", nullptr));
         Umidade_label->setText(QApplication::translate("MainWindow", "Umidade", nullptr));
         maior_label->setText(QApplication::translate("MainWindow", "Maior:", nullptr));
         menor_label->setText(QApplication::translate("MainWindow", "Menor:", nullptr));
         media_label->setText(QApplication::translate("MainWindow", "M\303\251dia:", nullptr));
         ultimo_label->setText(QApplication::translate("MainWindow", "\303\232ltimo:", nullptr));
-        maiortemperatura->setText(QApplication::translate("MainWindow", "24\302\272C", nullptr));
-        menortemperatura->setText(QApplication::translate("MainWindow", "24\302\272C", nullptr));
-        mediatemperatura->setText(QApplication::translate("MainWindow", "24\302\272C", nullptr));
-        ultimatemperatura->setText(QApplication::translate("MainWindow", "24\302\272C", nullptr));
+        maiortemperatura->setText(QApplication::translate("MainWindow", "0\302\272C", nullptr));
+        menortemperatura->setText(QApplication::translate("MainWindow", "0\302\272C", nullptr));
+        mediatemperatura->setText(QApplication::translate("MainWindow", "0\302\272C", nullptr));
+        ultimatemperatura->setText(QApplication::translate("MainWindow", "0\302\272C", nullptr));
         Temperatura_label->setText(QApplication::translate("MainWindow", "Temperatura", nullptr));
         label_whatisshowing->setText(QString());
         comboBoxPorts->setItemText(0, QApplication::translate("MainWindow", "Porta", nullptr));
         comboBoxPorts->setItemText(1, QApplication::translate("MainWindow", "/dev/ttyACM0", nullptr));
         comboBoxPorts->setItemText(2, QApplication::translate("MainWindow", "/dev/ttyACM1", nullptr));
-        comboBoxPorts->setItemText(3, QApplication::translate("MainWindow", "/dev/ttyUSB0", nullptr));
-        comboBoxPorts->setItemText(4, QApplication::translate("MainWindow", "/dev/ttyUSB1", nullptr));
+        comboBoxPorts->setItemText(3, QApplication::translate("MainWindow", "/dev/ttyACM2", nullptr));
+        comboBoxPorts->setItemText(4, QApplication::translate("MainWindow", "/dev/ttyACM3", nullptr));
+        comboBoxPorts->setItemText(5, QApplication::translate("MainWindow", "/dev/ttyUSB0", nullptr));
+        comboBoxPorts->setItemText(6, QApplication::translate("MainWindow", "/dev/ttyUSB1", nullptr));
 
         comboBoxBaudrates->setItemText(0, QApplication::translate("MainWindow", "Baudrate", nullptr));
         comboBoxBaudrates->setItemText(1, QApplication::translate("MainWindow", "9600", nullptr));

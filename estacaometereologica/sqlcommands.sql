@@ -1,3 +1,5 @@
+
+QUERY DE INSERCAO
 INSERT INTO `metereologia`.`medicoes`
 (`data`,
 `hora`,
@@ -8,6 +10,8 @@ VALUES
 "12:03",
 85,
 21);
+
+CRIA TABELA
 CREATE TABLE `metereologia`.`medicoes` (
   `ID` int not null primary key AUTO_INCREMENT,
   `data` date,
@@ -16,6 +20,8 @@ CREATE TABLE `metereologia`.`medicoes` (
   `temperatura` int
 )
 
+
+RESGATA VALORES DO BANCO
 SELECT AVG(umidade), AVG(temperatura) from metereologia.medicoes where (data = '2018-11-22' AND hora between '11:58:00' and '12:02:00');
 SELECT min(umidade), min(temperatura) from metereologia.medicoes where (data = "2018-11-22" AND hora >= "12:00:00");
 SELECT max(umidade), max(temperatura) from metereologia.medicoes where (data = "2018-11-22" AND hora >= "12:00:00");
